@@ -137,12 +137,15 @@ void train_detector(char *datacfg, char *cfgfile, char *weightfile, int *gpus, i
         }
         free_data(train);
     }
+    // BG: Commented out final.weights because it always duplicated a set of
+    //     weights. Set your max_batches in .cfg or weight_frequency in .data
+    //     so that you get the final weights that you want.
 #ifdef GPU
-    if(ngpus != 1) sync_nets(nets, ngpus, 0);
+    //if(ngpus != 1) sync_nets(nets, ngpus, 0);
 #endif
-    char buff[256];
-    sprintf(buff, "%s/%s_final.weights", backup_directory, base);
-    save_weights(net, buff);
+    //char buff[256];
+    //sprintf(buff, "%s/%s_final.weights", backup_directory, base);
+    //save_weights(net, buff);
 }
 
 
@@ -405,7 +408,6 @@ void validate_detector(char *datacfg, char *cfgfile, char *weightfile, char *out
             fps[j] = fopen(buff, "w");
         }
     }
-
 
     box *boxes = calloc(l.w*l.h*l.n, sizeof(box));
     float **probs = calloc(l.w*l.h*l.n, sizeof(float *));
