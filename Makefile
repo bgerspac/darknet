@@ -1,3 +1,6 @@
+# Set these two environment variables before compiling with GPU=1, CUDNN=1
+# export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
+# export LD_LIBRARY_PATH=/usr/local/cuda8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 GPU=1
 CUDNN=1
 OPENCV=0
