@@ -172,7 +172,17 @@ char *find_char_arg(int argc, char **argv, char *arg, char *def)
     return def;
 }
 
-
+char *filename(char *filepath)
+{
+    char *c = filepath;
+    char *next;
+    while((next = strchr(c, '/')))
+    {
+        c = next+1;
+    }
+    c = copy_string(c);
+    return c;
+}
 char *basecfg(char *cfgfile)
 {
     char *c = cfgfile;

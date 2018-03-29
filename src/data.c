@@ -9,6 +9,9 @@
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
+// BG: New function to get paths each prepended with the given prefix.
+//     This does not free the memory it allocates for the string, but
+//     as far as I can tell, neither does get_paths or its callers.
 list *get_complete_paths(char *prefix, char *filename)
 {
     char *path;
@@ -22,8 +25,6 @@ list *get_complete_paths(char *prefix, char *filename)
         strcpy(complete_path, prefix);
         strcat(complete_path, path);
         list_insert(lines, complete_path);
-	//list_insert(lines, "/home/bgerspac/sfuhome/cmpt733finalproject/tiles_596_593_bc/tile.0.0.jpg");
-        //free(complete_path);
     }
     fclose(file);
     return lines;
