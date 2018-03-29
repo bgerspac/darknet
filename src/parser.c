@@ -86,7 +86,7 @@ LAYER_TYPE string_to_layer_type(char * type)
 
 void free_section(section *s)
 {
-    free(s->type);
+    //free(s->type); //BG: Commented out because of "double free" error
     node *n = s->options->front;
     while(n){
         kvp *pair = (kvp *)n->val;
